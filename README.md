@@ -4,6 +4,12 @@
 
 [Copyright (c) 2025 Yuu Komiya (n138), Under MIT License](LICENSE)
 
+## pip install
+
+```pip
+pip3 install obs-websocket-py
+```
+
 ## Refs
 
 - [obs-websocket](https://github.com/obsproject/obs-websocket)
