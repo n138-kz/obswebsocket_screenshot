@@ -1,0 +1,26 @@
+# Backup files
+Backup/
+backup/
+*.bak*
+
+# Temporary files
+*.tmp
+*.dat
+
+# Secret files
+*.env
+*.database
+*.db
+*.sqlite
+*.sqlite3
+
+# Shortcut link files
+*.lnk
+*.url
+
+# Builded files
+Build/
+build/
+*.exe
+*.msi
+*.jar
