@@ -93,7 +93,7 @@ if scenes.status:
                     imageFilePath=config_runningdata['SaveSourceScreenshot']['imageFilePath'].replace(
                         '${source_name}', source_name
                     ).replace(
-                        '${time}', str(time())
+                        '${time}', str(math_floor(time()))
                     ),
                 ))
                 if screenshot.status:
