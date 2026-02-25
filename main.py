@@ -1,4 +1,5 @@
 from time import time
+from time import sleep
 from math import floor as math_floor
 import json
 import getpass
@@ -107,4 +108,5 @@ if scenes.status:
                             print(' ', end='')
                         print(f"{screenshot}")
 
+sleep(1)
 ws.disconnect()
