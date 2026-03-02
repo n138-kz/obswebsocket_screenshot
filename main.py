@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     # GitHub Actions の時は何もしない（インポートチェックのみで終了）
     if os.getenv('GITHUB_ACTIONS') == 'true':
-        print("GitHub Actions detected: Skipping execution logic.")
+        logger.info(f'GitHub Actions detected: Skipping execution logic.')
         exit(0)
 
     # Load config file
