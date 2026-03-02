@@ -52,7 +52,7 @@ try:
         port = config_filedata['connect']['port']
         password = config_filedata['connect']['password']
         config_runningdata = config_filedata
-except FileNotFoundError as err:
+except (FileNotFoundError,KeyError) as err:
     with open(config_filename,encoding='utf8',mode='w') as fp:
         json.dump(config_default, fp, indent=4, ensure_ascii=False)
     exit(1)
