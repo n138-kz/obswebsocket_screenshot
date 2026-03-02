@@ -80,7 +80,7 @@ try:
         port = config_filedata['connect']['port']
         password = config_filedata['connect']['password']
         config_runningdata = config_filedata
-except (FileNotFoundError,KeyError) as err:
+except (FileNotFoundError,json.decoder.JSONDecodeError,KeyError) as err:
     if os.path.exists(config_filename):
         import shutil
         shutil.move(
