@@ -64,7 +64,7 @@ try:
     ws.connect()
 except Exception as err:
     print(err)
-    exit()
+    exit(1)
 time_connect = math_floor(time())
 
 version = ws.call(requests.GetVersion())
