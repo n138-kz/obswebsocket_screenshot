@@ -7,12 +7,6 @@ import os
 from datetime import datetime, timedelta, timezone
 import pytest
 
-# GitHub Actions ならスキップ
-pytestmark = pytest.mark.skipif(
-    os.getenv('GITHUB_ACTIONS') == 'true',
-    reason="GitHub Actions 環境では実行エラーになる（OBSがない）ため"
-)
-
 if __name__ == "__main__":
     # workdir: set to current dir
     workdir = os.path.dirname(__file__).replace('\\', '/')
@@ -45,6 +39,11 @@ if __name__ == "__main__":
 
     # 起動
     logger.debug(f'Working dir: {workdir}')
+
+    # GitHub Actions の時は何もしない（インポートチェックのみで終了）
+    if os.getenv('GITHUB_ACTIONS') == 'true':
+        print("GitHub Actions detected: Skipping execution logic.")
+        exit(0)
 
     # Load config file
     config_filename = f'{workdir}/config.json'
