@@ -101,9 +101,10 @@ except (FileNotFoundError,json.decoder.JSONDecodeError,KeyError) as err:
 from obswebsocket import obsws, requests
 ws = obsws(host, port, password)
 try:
+    logger.info(f'Connecting to OBS: {host}:{port}')
     ws.connect()
 except Exception as err:
-    print(err)
+    logger.error(f'Connect Failure: {err}')
     exit(1)
 time_connect = int(time.time())
 
