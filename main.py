@@ -1,5 +1,4 @@
-from time import time
-from time import sleep
+import time
 import json
 import getpass
 from sys import exit
@@ -12,7 +11,7 @@ config_default = {
     'meta': {
         'ctime': {
             'by': getpass.getuser(),
-            'at': int(time()),
+            'at': int(time.time()),
         },
     },
     'locale': {
@@ -57,7 +56,7 @@ except (FileNotFoundError,KeyError) as err:
         from shutil import move as mv
         mv(
             config_filename,
-            f'{config_filename}.orginal({int(time())}).{config_filename.split('.')[len(config_filename.split('.'))-1]}'
+            f'{config_filename}.orginal({int(time.time())}).{config_filename.split('.')[len(config_filename.split('.'))-1]}'
         )
     with open(config_filename,encoding='utf8',mode='w') as fp:
         json.dump(config_default, fp, indent=4, ensure_ascii=False)
@@ -71,7 +70,7 @@ try:
 except Exception as err:
     print(err)
     exit(1)
-time_connect = int(time())
+time_connect = int(time.time())
 
 version = ws.call(requests.GetVersion())
 if version.status:
@@ -100,7 +99,7 @@ if scenes.status:
                     imageFilePath=config_runningdata['SaveSourceScreenshot']['imageFilePath'].replace(
                         '${source_name}', source_name
                     ).replace(
-                        '${time}', str(int(time()))
+                        '${time}', str(int(time.time()))
                     ),
                 ))
                 if screenshot.status:
@@ -114,5 +113,5 @@ if scenes.status:
                             print(' ', end='')
                         print(f"{screenshot}")
 
-sleep(1)
+time.sleep(1)
 ws.disconnect()
