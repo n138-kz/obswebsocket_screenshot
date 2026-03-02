@@ -158,3 +158,4 @@ if scenes.status:
 
 time.sleep(1)
 ws.disconnect()
+logger.debug(f'Disconnected from OBS')
