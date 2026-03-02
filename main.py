@@ -1,6 +1,5 @@
 from time import time
 from time import sleep
-from math import floor as math_floor
 import json
 import getpass
 from sys import exit
@@ -13,7 +12,7 @@ config_default = {
     'meta': {
         'ctime': {
             'by': getpass.getuser(),
-            'at': math_floor(time()),
+            'at': int(time()),
         },
     },
     'locale': {
@@ -66,7 +65,7 @@ try:
 except Exception as err:
     print(err)
     exit(1)
-time_connect = math_floor(time())
+time_connect = int(time())
 
 version = ws.call(requests.GetVersion())
 if version.status:
@@ -95,7 +94,7 @@ if scenes.status:
                     imageFilePath=config_runningdata['SaveSourceScreenshot']['imageFilePath'].replace(
                         '${source_name}', source_name
                     ).replace(
-                        '${time}', str(math_floor(time()))
+                        '${time}', str(int(time()))
                     ),
                 ))
                 if screenshot.status:
