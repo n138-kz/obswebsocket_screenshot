@@ -38,7 +38,7 @@ config_default = {
     },
     'SaveSourceScreenshot': {
         'imageFormat': 'webp',
-        'imageFilePath': f'{workdir.replace('\\', '/')}/Screenshot_${{source_name}}_${{time}}_.webp',
+        'imageFilePath': f'{workdir}/Screenshot_${{source_name}}_${{time}}_.webp',
     },
 }
 output_filename = f'{workdir}/outputlog({int(time.time())}).log'
