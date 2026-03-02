@@ -145,7 +145,7 @@ if scenes.status:
                     except Exception as err:
                         for i in range(0,len(config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-list'])+2):
                             print(' ', end='')
-                        logger.error(f'Error has occured: {err}')
+                        logger.error(f'Error: {err}')
                         for i in range(0,len(config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-list'])+2):
                             print(' ', end='')
                         logger.error(f'Error: {screenshot}')
