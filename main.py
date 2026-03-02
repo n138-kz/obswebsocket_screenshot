@@ -16,20 +16,22 @@ if __name__ == "__main__":
     logger.setLevel(logging.DEBUG)
 
     # logger制御変数(Dict)
-    logger_config = { 'fmt': None, 'handler': {} }
+    logger_config = { 'format': {}, 'handler': {} }
 
     # ログフォーマット
-    logger_config['format'] = logging.Formatter('%(asctime)s | %(levelname)-8s| %(filename)s:%(lineno)03d | %(name)s | %(message)s')
+    logger_config['format']['console'] = logging.Formatter('%(asctime)s[%(levelname)-8s]| %(message)s')
+    logger_config['format']['file']    = logging.Formatter('%(asctime)s | %(levelname)-8s| %(filename)s:%(lineno)03d | %(name)s | %(message)s')
+    logger_config['format']['file2']   = logging.Formatter('%(asctime)s | %(levelname)-8s| %(filename)s:%(lineno)03d | %(name)s | %(message)s')
 
     # ハンドラー（出力先）を作成してフォーマッターをセット
     logger_config['handler']['console'] = logging.StreamHandler()
-    logger_config['handler']['console'].setFormatter(fmt=logger_config['format'])
+    logger_config['handler']['console'].setFormatter(fmt=logger_config['format']['console'])
     logger_config['handler']['console'].setLevel(logging.INFO)
     logger_config['handler']['file'] = logging.FileHandler(f'{workdir}/outputlog({int(time.time())}).log', encoding='utf-8')
-    logger_config['handler']['file'].setFormatter(fmt=logger_config['format'])
+    logger_config['handler']['file'].setFormatter(fmt=logger_config['format']['file'])
     logger_config['handler']['file'].setLevel(logging.DEBUG)
     logger_config['handler']['file2'] = logging.FileHandler(f'{workdir}/outputlog(latest).log', encoding='utf-8', mode='w')
-    logger_config['handler']['file2'].setFormatter(fmt=logger_config['format'])
+    logger_config['handler']['file2'].setFormatter(fmt=logger_config['format']['file2'])
     logger_config['handler']['file2'].setLevel(logging.DEBUG)
 
     # ハンドラー（出力先）の設定：コンソールに出力
