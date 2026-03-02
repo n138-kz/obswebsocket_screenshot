@@ -3,6 +3,8 @@ import json
 import getpass
 from sys import exit
 import os
+
+# workdir: set to current dir
 workdir = os.path.dirname(__file__)
 
 # Load config file
