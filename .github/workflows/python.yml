@@ -25,6 +25,43 @@ jobs:
     - name: Install dependencies
       run: pip3 install obs-websocket-py pytest
 
+    - name: Create config.json
+      run: |
+        cat << EOF > config.json
+        {
+          "meta": {
+            "ctime": {
+              "by": "${{ github.actor }}",
+              "at": $(date +%s)
+            }
+          },
+          "locale": {
+            "lang": "en",
+            "en": {
+              "scene-list": "Scene List",
+              "scene-name": "Scene Name",
+              "source-list": "Source List",
+              "source-name": "Source Name"
+            },
+            "ja": {
+              "scene-list": "シーン一覧",
+              "scene-name": "シーン名",
+              "source-list": "ソース一覧",
+              "source-name": "ソース名"
+            }
+          },
+          "connect": {
+            "host": "localhost",
+            "port": 4455,
+            "password": "password"
+          },
+          "SaveSourceScreenshot": {
+            "imageFormat": "webp",
+            "imageFilePath": "/home/runner/work/obswebsocket_screenshot/obswebsocket_screenshot/Screenshot_${source_name}_${time}.webp"
+          }
+        }
+        EOF
+
     - name: run main.py
       run: pytest main.py
 
