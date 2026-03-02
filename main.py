@@ -94,7 +94,7 @@ except (FileNotFoundError,json.decoder.JSONDecodeError,KeyError) as err:
         logger.error(f'Config NotFound: {err}')
     with open(config_filename,encoding='utf8',mode='w') as fp:
         json.dump(config_default, fp, indent=4, ensure_ascii=False)
-        logger.error(f'Config created: {config_filename}')
+        logger.info(f'Config created: {config_filename}')
     exit(1)
 
 # OBSに接続
