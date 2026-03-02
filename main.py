@@ -54,8 +54,8 @@ try:
         config_runningdata = config_filedata
 except (FileNotFoundError,KeyError) as err:
     if os.path.exists(config_filename):
-        from shutil import move as mv
-        mv(
+        import shutil
+        shutil.move(
             config_filename,
             f'{config_filename}.orginal({int(time.time())}).{config_filename.split('.')[len(config_filename.split('.'))-1]}'
         )
