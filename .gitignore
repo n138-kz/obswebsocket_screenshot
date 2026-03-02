@@ -6,6 +6,7 @@ backup/
 # Temporary files
 *.tmp
 *.dat
+*.log
 
 # Secret files
 *.env
