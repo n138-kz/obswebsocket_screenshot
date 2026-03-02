@@ -17,7 +17,7 @@ logger.setLevel(logging.DEBUG)
 logger_config = { 'fmt': None, 'handler': {} }
 
 # ログフォーマット
-logger_config['format'] = logging.Formatter('%(asctime)s | %(levelname)-8s| %(filename)s:%(lineno)d | %(name)s | %(message)s')
+logger_config['format'] = logging.Formatter('%(asctime)s | %(levelname)-8s| %(filename)s:%(lineno)3d | %(name)s | %(message)s')
 
 # ハンドラー（出力先）を作成してフォーマッターをセット
 logger_config['handler']['console'] = logging.StreamHandler()
