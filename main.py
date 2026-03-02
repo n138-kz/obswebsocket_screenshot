@@ -17,7 +17,7 @@ logger.setLevel(logging.DEBUG)
 logger_config = { 'fmt': None, 'handler': {} }
 
 # ログフォーマット
-logger_config['format'] = logging.Formatter('%(asctime)s | %(levelname)-8s| %(filename)s:%(lineno)3d | %(name)s | %(message)s')
+logger_config['format'] = logging.Formatter('%(asctime)s | %(levelname)-8s| %(filename)s:%(lineno)03d | %(name)s | %(message)s')
 
 # ハンドラー（出力先）を作成してフォーマッターをセット
 logger_config['handler']['console'] = logging.StreamHandler()
@@ -120,14 +120,14 @@ if scenes.status:
     active_scene = scenes.getcurrentProgramSceneName()
 
     for scene in scenes.getScenes():
-        print(f""+config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-name']+": "+scene['sceneName'])
+        logger.info(f'{config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-name']}: {scene['sceneName']}')
         scene_name=scene['sceneName']
 
         sources = ws.call(requests.GetSceneItemList(sceneName=scene_name))
         for source in sources.getSceneItems():
             for i in range(0,len(config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-list'])):
                 print(' ', end='')
-            print(f"- "+config_runningdata['locale'][config_runningdata['locale']['lang']]['source-name']+": "+source['sourceName'])
+            logger.info(f'- {config_runningdata['locale'][config_runningdata['locale']['lang']]['source-name']}: {source['sourceName']}')
             source_name=source['sourceName']
 
             if active_scene == scene_name and source['sceneItemEnabled']:
@@ -147,10 +147,10 @@ if scenes.status:
                     except Exception as err:
                         for i in range(0,len(config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-list'])+2):
                             print(' ', end='')
-                        print(type(err))
+                        logger.error(f'Error has occured: {err}')
                         for i in range(0,len(config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-list'])+2):
                             print(' ', end='')
-                        print(f"{screenshot}")
+                        logger.error(f'Error: {screenshot}')
 
 time.sleep(1)
 ws.disconnect()
