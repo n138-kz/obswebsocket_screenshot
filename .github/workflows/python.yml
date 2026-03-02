@@ -27,3 +27,9 @@ jobs:
 
     - name: run main.py
       run: pytest main.py
+
+    - name: Upload log file
+      uses: actions/upload-artifact@v4
+      with:
+        name: debug-log
+        path: outputlog(latest).log
