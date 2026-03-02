@@ -33,7 +33,7 @@ config_default = {
     'connect': {
         'host': 'localhost',
         'port': 4455,
-        'password': '',
+        'password': 'password',
     },
     'SaveSourceScreenshot': {
         'imageFormat': 'webp',
