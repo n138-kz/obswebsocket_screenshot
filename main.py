@@ -37,7 +37,7 @@ config_default = {
     },
     'SaveSourceScreenshot': {
         'imageFormat': 'webp',
-        'imageFilePath': 'C:/Screenshot_${source_name}_${time}_.webp',
+        'imageFilePath': f'{workdir.replace('\\', '/')}/Screenshot_${{source_name}}_${{time}}_.webp',
     },
 }
 
