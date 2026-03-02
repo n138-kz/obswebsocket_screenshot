@@ -74,10 +74,6 @@ config_default = {
 }
 logger.debug(f'Load config: {workdir}/config.json')
 
-def test_py():
-    with open(config_filename,encoding='utf8',mode='w') as fp:
-        json.dump(config_default, fp, indent=4, ensure_ascii=False)
-
 config_runningdata = config_default
 host = config_default['connect']['host']
 port = config_default['connect']['port']
