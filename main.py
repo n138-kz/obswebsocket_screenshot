@@ -8,7 +8,7 @@ import os
 workdir = os.path.dirname(__file__)
 
 # Load config file
-config_filename = workdir+'/'+'.json'
+config_filename = f'{workdir}/.json'
 config_default = {
     'meta': {
         'ctime': {
