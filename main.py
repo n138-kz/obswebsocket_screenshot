@@ -53,6 +53,12 @@ try:
         password = config_filedata['connect']['password']
         config_runningdata = config_filedata
 except (FileNotFoundError,KeyError) as err:
+    if os.path.exists(config_filename):
+        from shutil import move as mv
+        mv(
+            config_filename,
+            f'{config_filename}.orginal({int(time())}).{config_filename.split('.')[len(config_filename.split('.'))-1]}'
+        )
     with open(config_filename,encoding='utf8',mode='w') as fp:
         json.dump(config_default, fp, indent=4, ensure_ascii=False)
     exit(1)
