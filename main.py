@@ -26,10 +26,14 @@ logger_config['handler']['console'].setLevel(logging.INFO)
 logger_config['handler']['file'] = logging.FileHandler(f'{workdir}/outputlog({int(time.time())}).log', encoding='utf-8')
 logger_config['handler']['file'].setFormatter(fmt=logger_config['format'])
 logger_config['handler']['file'].setLevel(logging.DEBUG)
+logger_config['handler']['file2'] = logging.FileHandler(f'{workdir}/outputlog(latest).log', encoding='utf-8', mode='w')
+logger_config['handler']['file2'].setFormatter(fmt=logger_config['format'])
+logger_config['handler']['file2'].setLevel(logging.DEBUG)
 
 # ハンドラー（出力先）の設定：コンソールに出力
 logger.addHandler(logger_config['handler']['console'])
 logger.addHandler(logger_config['handler']['file'])
+logger.addHandler(logger_config['handler']['file2'])
 
 # 起動
 logger.debug(f'Working dir: {workdir}')
