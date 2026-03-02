@@ -30,6 +30,7 @@ jobs:
 
     - name: Upload log file
       uses: actions/upload-artifact@v4
+      if: always()
       with:
         name: debug-log
         path: outputlog(latest).log
