@@ -80,15 +80,21 @@ try:
         port = config_filedata['connect']['port']
         password = config_filedata['connect']['password']
         config_runningdata = config_filedata
+    logger.debug(f'Config loaded: {workdir}/config.json')
 except (FileNotFoundError,json.decoder.JSONDecodeError,KeyError) as err:
+    logger.error(f'Config load failure: {workdir}/config.json')
     if os.path.exists(config_filename):
         import shutil
         shutil.move(
             config_filename,
             f'{config_filename}.orginal({int(time.time())}).{config_filename.split('.')[len(config_filename.split('.'))-1]}'
         )
+        logger.error(f'Config KeyError: {err}')
+    else:
+        logger.error(f'Config NotFound: {err}')
     with open(config_filename,encoding='utf8',mode='w') as fp:
         json.dump(config_default, fp, indent=4, ensure_ascii=False)
+        logger.error(f'Config created: {config_filename}')
     exit(1)
 
 # OBSに接続
