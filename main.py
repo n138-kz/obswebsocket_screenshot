@@ -1,11 +1,37 @@
 import time
 import json
+import logging
 import getpass
 from sys import exit
 import os
 
 # workdir: set to current dir
 workdir = os.path.dirname(__file__).replace('\\', '/')
+
+# Loggerの生成（__name__を入れることで、現在のファイル名が記録される）
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+# logger制御変数(Dict)
+logger_config = { 'fmt': None, 'handler': {} }
+
+# ログフォーマット
+logger_config['format'] = logging.Formatter('%(asctime)s | %(levelname)-8s| %(filename)s:%(lineno)d | %(name)s | %(message)s')
+
+# ハンドラー（出力先）を作成してフォーマッターをセット
+logger_config['handler']['console'] = logging.StreamHandler()
+logger_config['handler']['console'].setFormatter(fmt=logger_config['format'])
+logger_config['handler']['console'].setLevel(logging.INFO)
+logger_config['handler']['file'] = logging.FileHandler(f'{workdir}/outputlog({int(time.time())}).log', encoding='utf-8')
+logger_config['handler']['file'].setFormatter(fmt=logger_config['format'])
+logger_config['handler']['file'].setLevel(logging.DEBUG)
+
+# ハンドラー（出力先）の設定：コンソールに出力
+logger.addHandler(logger_config['handler']['console'])
+logger.addHandler(logger_config['handler']['file'])
+
+# 起動
+logger.debug(f'Working dir: {workdir}')
 
 # Load config file
 config_filename = f'{workdir}/config.json'
