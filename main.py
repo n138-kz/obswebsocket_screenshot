@@ -5,6 +5,13 @@ import getpass
 from sys import exit
 import os
 from datetime import datetime, timedelta, timezone
+import pytest
+
+# GitHub Actions ならスキップ
+pytestmark = pytest.mark.skipif(
+    os.getenv('GITHUB_ACTIONS') == 'true',
+    reason="GitHub Actions 環境では実行エラーになる（OBSがない）ため"
+)
 
 # workdir: set to current dir
 workdir = os.path.dirname(__file__).replace('\\', '/')
