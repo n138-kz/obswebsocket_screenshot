@@ -156,6 +156,7 @@ if scenes.status:
                             print(' ', end='')
                         logger.error(f'Error: {screenshot}')
 
-time.sleep(1)
 ws.disconnect()
 logger.debug(f'Disconnected from OBS')
+
+time.sleep(1)
