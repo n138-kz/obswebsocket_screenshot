@@ -122,6 +122,7 @@ if version.status:
 scenes = ws.call(requests.GetSceneList())
 if scenes.status:
     active_scene = scenes.getcurrentProgramSceneName()
+    logger.debug(f'Active Scene: {active_scene}')
 
     for scene in scenes.getScenes():
         logger.info(f'{config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-name']}: {scene['sceneName']}')
