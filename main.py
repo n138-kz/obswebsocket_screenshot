@@ -111,6 +111,7 @@ time_connect = int(time.time())
 version = ws.call(requests.GetVersion())
 if version.status:
     version = version.getObsVersion()
+    logger.debug(f'OBS version: {version}')
 
 scenes = ws.call(requests.GetSceneList())
 if scenes.status:
