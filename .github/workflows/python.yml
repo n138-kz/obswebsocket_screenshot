@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'main.py'
+      - '**.yml'
     branches: 
       - '**'
   workflow_dispatch:
