@@ -3,7 +3,7 @@ from time import sleep
 from math import floor as math_floor
 import json
 import getpass
-from sys import exit as exit
+from sys import exit
 import os
 workdir = os.path.dirname(__file__)
 
@@ -56,6 +56,7 @@ try:
 except FileNotFoundError as err:
     with open(config_filename,encoding='utf8',mode='w') as fp:
         json.dump(config_default, fp)
+    exit(1)
 
 # OBSに接続
 from obswebsocket import obsws, requests
