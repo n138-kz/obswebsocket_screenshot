@@ -4,6 +4,8 @@ import logging
 import getpass
 from sys import exit
 import os
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 # workdir: set to current dir
 workdir = os.path.dirname(__file__).replace('\\', '/')
@@ -107,6 +109,7 @@ except Exception as err:
     logger.error(f'Connect Failure: {err}')
     exit(1)
 time_connect = int(time.time())
+logger.debug(f'Connected to OBS: at {time_connect}({datetime.fromtimestamp(timestamp, tz=ZoneInfo("Asia/Tokyo")).isoformat()})')
 
 version = ws.call(requests.GetVersion())
 if version.status:
