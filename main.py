@@ -39,6 +39,7 @@ config_default = {
         'imageFilePath': f'{workdir.replace('\\', '/')}/Screenshot_${{source_name}}_${{time}}_.webp',
     },
 }
+output_filename = f'{workdir}/outputlog({int(time.time())}).log'
 
 config_runningdata = config_default
 host = config_default['connect']['host']
