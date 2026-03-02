@@ -5,7 +5,7 @@ from sys import exit
 import os
 
 # workdir: set to current dir
-workdir = os.path.dirname(__file__)
+workdir = os.path.dirname(__file__).replace('\\', '/')
 
 # Load config file
 config_filename = f'{workdir}/config.json'
