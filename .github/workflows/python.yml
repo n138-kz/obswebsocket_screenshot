@@ -63,7 +63,7 @@ jobs:
         EOF
 
     - name: run main.py
-      run: python3 main.py || echo "Skipped or Failed"
+      run: python3 main.py || echo "::notice::Skipped or Failed"
 
     - name: Upload log file
       uses: actions/upload-artifact@v4
