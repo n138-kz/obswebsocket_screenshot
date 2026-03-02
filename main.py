@@ -146,6 +146,7 @@ if scenes.status:
                 ))
                 if screenshot.status:
                     try:
+                        logger.debug(f'Caputured: {screenshot}')
                         screenshot = screenshot.getSourceName()
                     except Exception as err:
                         for i in range(0,len(config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-list'])+2):
