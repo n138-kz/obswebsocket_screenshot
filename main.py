@@ -67,6 +67,7 @@ config_default = {
         'imageFilePath': f'{workdir}/Screenshot_${{source_name}}_${{time}}_.webp',
     },
 }
+logger.debug(f'Load config: {workdir}/config.json')
 
 config_runningdata = config_default
 host = config_default['connect']['host']
