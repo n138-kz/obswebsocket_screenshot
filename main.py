@@ -124,7 +124,7 @@ if __name__ == "__main__":
         time.sleep(1)
         exit(1)
     time_connect = int(time.time())
-    logger.debug(f'Connected to OBS: at {time_connect}({datetime.fromtimestamp(time_connect, tz=timezone(timedelta(hours=9))).isoformat()})')
+    logger.info(f'Connected to OBS: at {time_connect}({datetime.fromtimestamp(time_connect, tz=timezone(timedelta(hours=9))).isoformat()})')
 
     version = ws.call(requests.GetVersion())
     if version.status:
@@ -192,7 +192,7 @@ if __name__ == "__main__":
                     logger.debug(f'Item: {screenshot}')
 
     ws.disconnect()
-    logger.debug(f'Disconnected from OBS')
+    logger.info(f'Disconnected from OBS')
 
     time.sleep(1)
     exit(0)
