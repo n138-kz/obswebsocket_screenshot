@@ -144,6 +144,10 @@ if __name__ == "__main__":
             .replace( '${time}', str(int(time.time())) )
         ))
 
+        if screenshot.status:
+            logger.debug(f'Caputured: {screenshot}')
+        else:
+            logger.error(f'Failure the capture: {screenshot}')
 
         for scene in scenes.getScenes():
             logger.info(f'{config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-name']}: {scene['sceneName']}')
