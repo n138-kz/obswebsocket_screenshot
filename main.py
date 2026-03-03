@@ -119,7 +119,7 @@ if __name__ == "__main__":
     try:
         logger.info(f'Connecting to OBS: {host}:{port}')
         ws.connect()
-    except (exceptions.ConnectionFailure,exceptions.AuthFailure,exceptions.MessageTimeout) as err:
+    except (exceptions.ConnectionFailure,exceptions.MessageTimeout,exceptions.ObjectError) as err:
         logger.error(f'Connect Failure: {err}')
         time.sleep(1)
         exit(1)
