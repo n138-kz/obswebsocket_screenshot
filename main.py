@@ -178,10 +178,12 @@ if __name__ == "__main__":
                         imageFormat=screenshot_item.get('imageFormat'),
                         imageFilePath=screenshot_item.get('imageFilePath'),
                     ))
+
+                    logger.debug(f'Item: {screenshot}')
                     if screenshot.status:
-                        logger.info(f'Caputured: {screenshot}')
+                        logger.info(f'Caputured: {screenshot_item.get('sourceName')}')
                     else:
-                        logger.error(f'Error: {screenshot}')
+                        logger.error(f'Error: {screenshot_item.get('sourceName')}')
 
     ws.disconnect()
     logger.debug(f'Disconnected from OBS')
