@@ -150,9 +150,9 @@ if __name__ == "__main__":
         ))
 
         if screenshot.status:
-            logger.debug(f'Caputured: {screenshot}')
+            logger.info(f'Caputured: {screenshot_item.get('sourceName')}')
         else:
-            logger.error(f'Error: {screenshot}')
+            logger.error(f'Error: {screenshot_item.get('sourceName')}')
 
         for scene in scenes.getScenes():
             logger.debug(f'{config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-name']}: {scene['sceneName']}')
