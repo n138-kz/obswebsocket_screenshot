@@ -114,15 +114,11 @@ if __name__ == "__main__":
         exit(1)
 
     # OBSに接続
-    from obswebsocket import obsws, requests, exceptions
+    from obswebsocket import obsws, requests
     ws = obsws(host, port, password)
     try:
         logger.info(f'Connecting to OBS: {host}:{port}')
         ws.connect()
-    except (exceptions.ConnectionFailure,exceptions.MessageTimeout,exceptions.ObjectError) as err:
-        logger.error(f'Connect Failure: {err}')
-        time.sleep(1)
-        exit(1)
     except Exception as err:
         logger.error(f'Connect Failure: {err}')
         time.sleep(1)
