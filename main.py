@@ -110,6 +110,7 @@ if __name__ == "__main__":
         with open(config_filename,encoding='utf8',mode='w') as fp:
             json.dump(config_default, fp, indent=4, ensure_ascii=False)
             logger.info(f'Config created: {config_filename}')
+        time.sleep(1)
         exit(1)
 
     # OBSに接続
@@ -120,6 +121,7 @@ if __name__ == "__main__":
         ws.connect()
     except Exception as err:
         logger.error(f'Connect Failure: {err}')
+        time.sleep(1)
         exit(1)
     time_connect = int(time.time())
     logger.debug(f'Connected to OBS: at {time_connect}({datetime.fromtimestamp(time_connect, tz=timezone(timedelta(hours=9))).isoformat()})')
