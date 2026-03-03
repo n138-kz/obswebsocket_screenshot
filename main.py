@@ -147,7 +147,7 @@ if __name__ == "__main__":
         if screenshot.status:
             logger.debug(f'Caputured: {screenshot}')
         else:
-            logger.error(f'Failure the capture: {screenshot}')
+            logger.error(f'Error: {screenshot}')
 
         for scene in scenes.getScenes():
             logger.info(f'{config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-name']}: {scene['sceneName']}')
