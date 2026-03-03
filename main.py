@@ -136,6 +136,15 @@ if __name__ == "__main__":
         active_scene = scenes.getcurrentProgramSceneName()
         logger.debug(f'Active Scene: {active_scene}')
 
+        screenshot = ws.call(requests.SaveSourceScreenshot(
+            sourceName=active_scene,
+            imageFormat=config_runningdata['SaveSourceScreenshot']['imageFormat'],
+            imageFilePath=config_runningdata['SaveSourceScreenshot']['imageFilePath']
+            .replace( '${source_name}', active_scene )
+            .replace( '${time}', str(int(time.time())) )
+        ))
+
+
         for scene in scenes.getScenes():
             logger.info(f'{config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-name']}: {scene['sceneName']}')
             scene_name=scene['sceneName']
