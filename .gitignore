@@ -14,7 +14,7 @@ backup/
 *.db
 *.sqlite
 *.sqlite3
-config.*
+config*.*
 
 # Shortcut link files
 *.lnk
