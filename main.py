@@ -154,7 +154,7 @@ if __name__ == "__main__":
                         imageFormat=config_runningdata['SaveSourceScreenshot']['imageFormat'],
                         imageFilePath=config_runningdata['SaveSourceScreenshot']['imageFilePath']
                         .replace( '${source_name}', source_name )
-                        .replace( '${time}', str(int(time.time())) ),
+                        .replace( '${time}', str(int(time.time())) )
                     ))
                     if screenshot.status:
                         try:
