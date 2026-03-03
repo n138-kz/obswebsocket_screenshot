@@ -170,3 +170,4 @@ if __name__ == "__main__":
     logger.debug(f'Disconnected from OBS')
 
     time.sleep(1)
+    exit(0)
