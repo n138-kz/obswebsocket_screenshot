@@ -153,6 +153,10 @@ if __name__ == "__main__":
             logger.info(f'{config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-name']}: {scene['sceneName']}')
             scene_name=scene['sceneName']
 
+            if active_scene != scene_name:
+                logger.debug(f'Not active scenes: {scene_name}')
+                continue
+
             sources = ws.call(requests.GetSceneItemList(sceneName=scene_name))
             for source in sources.getSceneItems():
                 for i in range(0,len(config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-list'])):
