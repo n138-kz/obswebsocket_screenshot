@@ -170,15 +170,9 @@ if __name__ == "__main__":
                         .replace( '${time}', str(int(time.time())) )
                     ))
                     if screenshot.status:
-                        try:
-                            logger.debug(f'Caputured: {screenshot}')
-                        except Exception as err:
-                            for i in range(0,len(config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-list'])+2):
-                                print(' ', end='')
-                            logger.error(f'Error: {err}')
-                            for i in range(0,len(config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-list'])+2):
-                                print(' ', end='')
-                            logger.error(f'Error: {screenshot}')
+                        logger.info(f'Caputured: {screenshot}')
+                    else:
+                        logger.error(f'Error: {screenshot}')
 
     ws.disconnect()
     logger.debug(f'Disconnected from OBS')
