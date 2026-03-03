@@ -150,7 +150,7 @@ if __name__ == "__main__":
             logger.error(f'Error: {screenshot}')
 
         for scene in scenes.getScenes():
-            logger.info(f'{config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-name']}: {scene['sceneName']}')
+            logger.debug(f'{config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-name']}: {scene['sceneName']}')
             scene_name=scene['sceneName']
 
             if active_scene != scene_name:
@@ -161,7 +161,7 @@ if __name__ == "__main__":
             for source in sources.getSceneItems():
                 for i in range(0,len(config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-list'])):
                     print(' ', end='')
-                logger.info(f'- {config_runningdata['locale'][config_runningdata['locale']['lang']]['source-name']}: {source['sourceName']}')
+                logger.debug(f'- {config_runningdata['locale'][config_runningdata['locale']['lang']]['source-name']}: {source['sourceName']}')
                 source_name=source['sourceName']
 
                 if active_scene == scene_name and source['sceneItemEnabled']:
