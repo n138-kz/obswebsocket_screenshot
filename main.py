@@ -104,7 +104,7 @@ if __name__ == "__main__":
                 config_filename,
                 f'{config_filename}.orginal({int(time.time())}).{config_filename.split('.')[len(config_filename.split('.'))-1]}'
             )
-            logger.info(f'Config Backuped: {config_filename} --> {config_filename}.orginal({int(time.time())}).{config_filename.split('.')[len(config_filename.split('.'))-1]}')
+            logger.info(f'Config copied: {config_filename} --> {config_filename}.orginal({int(time.time())}).{config_filename.split('.')[len(config_filename.split('.'))-1]}')
         else:
             logger.error(f'Config NotFound: {err}')
         with open(config_filename,encoding='utf8',mode='w') as fp:
