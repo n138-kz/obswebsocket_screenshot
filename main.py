@@ -166,12 +166,17 @@ if __name__ == "__main__":
 
                 if active_scene == scene_name and source['sceneItemEnabled']:
                     # https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md#getsourcescreenshot
-                    screenshot = ws.call(requests.SaveSourceScreenshot(
-                        sourceName=source_name,
-                        imageFormat=config_runningdata['SaveSourceScreenshot']['imageFormat'],
-                        imageFilePath=config_runningdata['SaveSourceScreenshot']['imageFilePath']
+                    screenshot_item={
+                        'sourceName':source_name,
+                        'imageFormat':config_runningdata['SaveSourceScreenshot']['imageFormat'],
+                        'imageFilePath':config_runningdata['SaveSourceScreenshot']['imageFilePath']
                         .replace( '${source_name}', source_name )
                         .replace( '${time}', str(int(time.time())) )
+                    }
+                    screenshot = ws.call(requests.SaveSourceScreenshot(
+                        sourceName=screenshot_item.get('sourceName'),
+                        imageFormat=screenshot_item.get('imageFormat'),
+                        imageFilePath=screenshot_item.get('imageFilePath'),
                     ))
                     if screenshot.status:
                         logger.info(f'Caputured: {screenshot}')
