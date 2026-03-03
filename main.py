@@ -153,6 +153,7 @@ if __name__ == "__main__":
             logger.info(f'Caputured: {screenshot_item.get('sourceName')}')
         else:
             logger.error(f'Error: {screenshot_item.get('sourceName')}')
+        logger.debug(f'Item: {screenshot}')
 
         for scene in scenes.getScenes():
             logger.debug(f'{config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-name']}: {scene['sceneName']}')
@@ -184,11 +185,11 @@ if __name__ == "__main__":
                         imageFilePath=screenshot_item.get('imageFilePath'),
                     ))
 
-                    logger.debug(f'Item: {screenshot}')
                     if screenshot.status:
                         logger.info(f'Caputured: {screenshot_item.get('sourceName')}')
                     else:
                         logger.error(f'Error: {screenshot_item.get('sourceName')}')
+                    logger.debug(f'Item: {screenshot}')
 
     ws.disconnect()
     logger.debug(f'Disconnected from OBS')
