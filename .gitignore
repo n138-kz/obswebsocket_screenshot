@@ -8,13 +8,6 @@ backup/
 *.dat
 *.log
 
-# Binary files
-*.gif
-*.png
-*.jpg
-*.jpeg
-*.webp
-
 # Secret files
 *.env
 *.database
