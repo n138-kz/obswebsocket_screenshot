@@ -1,11 +1,13 @@
-name: Python Package using Conda
+name: Python Run Check
 
 on: 
   push:
     paths:
       - 'main.py'
+      - '.github/workflows/**.yml'
     branches: 
       - '**'
+  workflow_dispatch:
 
 jobs:
   build-linux:
@@ -15,11 +17,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Python 3.10
+
+    - name: Set up Python 3.13
       uses: actions/setup-python@v3
       with:
-        python-version: '3.10'
+        python-version: '3.13'
+
     - name: Install dependencies
-      run: pip3 install obs-websocket-py
+      run: pip3 install obs-websocket-py pytest
+
     - name: run main.py
       run: python3 main.py
+
+    - name: Upload log file
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: debug-log
+        path: outputlog(latest).log

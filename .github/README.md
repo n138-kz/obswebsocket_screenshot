@@ -2,7 +2,7 @@
 
 ## License
 
-[Copyright (c) 2025 Yuu Komiya (n138), Under MIT License](LICENSE)
+[Copyright (c) 2025-2026 Yuu Komiya (n138), Under MIT License](/LICENSE)
 
 ## How to use
 
@@ -14,7 +14,7 @@
 pip3 install obs-websocket-py
 ```
 
-3. Download [main.py](main.py)
+3. Download [main.py](/main.py)
 4. Run `main.py`
 5. Launch the OBS, show config on WebSocket. (Tools > Websocket)  
    <img alt="" height="200px" src="https://github.com/user-attachments/assets/826b73f1-1df8-442a-bb78-3c604ed85d60">
