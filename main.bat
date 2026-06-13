@@ -1,4 +1,4 @@
 :loop
 main.py
-timeout 10
+timeout 1
 goto loop
