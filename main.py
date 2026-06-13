@@ -8,7 +8,36 @@ from datetime import datetime, timedelta, timezone
 import asyncio
 import pytest
 
-if __name__ == "__main__":
+async def obs_screenshot(source):
+    for i in range(0,len(config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-list'])):
+        print(' ', end='')
+    logger.debug(f'- {config_runningdata['locale'][config_runningdata['locale']['lang']]['source-name']}: {source['sourceName']}')
+    source_name=source['sourceName']
+
+    if active_scene == scene_name and source['sceneItemEnabled']:
+        # https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md#getsourcescreenshot
+        screenshot_item={
+            'sourceName':source_name,
+            'imageFormat':config_runningdata['SaveSourceScreenshot']['imageFormat'],
+            'imageFilePath':config_runningdata['SaveSourceScreenshot']['imageFilePath']
+            .replace( '${source_name}', source_name )
+            .replace( '${time}', str(int(time.time())) )
+        }
+
+        screenshot = ws.call(requests.SaveSourceScreenshot(
+            sourceName=screenshot_item.get('sourceName'),
+            imageFormat=screenshot_item.get('imageFormat'),
+            imageFilePath=screenshot_item.get('imageFilePath'),
+        ))
+
+        if screenshot.status:
+            logger.info(f'Caputured: {screenshot_item.get('sourceName')}')
+        else:
+            logger.error(f'Error: {screenshot_item.get('sourceName')}')
+        logger.debug(f'Item: {screenshot}')
+
+
+async def main():
     # workdir: set to current dir
     workdir = os.path.dirname(__file__).replace('\\', '/')
 
@@ -165,35 +194,13 @@ if __name__ == "__main__":
                 continue
 
             sources = ws.call(requests.GetSceneItemList(sceneName=scene_name))
-            for source in sources.getSceneItems():
-                for i in range(0,len(config_runningdata['locale'][config_runningdata['locale']['lang']]['scene-list'])):
-                    print(' ', end='')
-                logger.debug(f'- {config_runningdata['locale'][config_runningdata['locale']['lang']]['source-name']}: {source['sourceName']}')
-                source_name=source['sourceName']
-
-                if active_scene == scene_name and source['sceneItemEnabled']:
-                    # https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md#getsourcescreenshot
-                    screenshot_item={
-                        'sourceName':source_name,
-                        'imageFormat':config_runningdata['SaveSourceScreenshot']['imageFormat'],
-                        'imageFilePath':config_runningdata['SaveSourceScreenshot']['imageFilePath']
-                        .replace( '${source_name}', source_name )
-                        .replace( '${time}', str(int(time.time())) )
-                    }
-                    screenshot = ws.call(requests.SaveSourceScreenshot(
-                        sourceName=screenshot_item.get('sourceName'),
-                        imageFormat=screenshot_item.get('imageFormat'),
-                        imageFilePath=screenshot_item.get('imageFilePath'),
-                    ))
-
-                    if screenshot.status:
-                        logger.info(f'Caputured: {screenshot_item.get('sourceName')}')
-                    else:
-                        logger.error(f'Error: {screenshot_item.get('sourceName')}')
-                    logger.debug(f'Item: {screenshot}')
-
+            tasks = [obs_screenshot(i) for i in sources.getSceneItems()]
+            await asyncio.gather(*tasks)
     ws.disconnect()
     logger.info(f'Disconnected from OBS')
 
     time.sleep(1)
     exit(0)
+
+if __name__ == "__main__":
+    asyncio.run(main())
