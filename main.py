@@ -5,6 +5,7 @@ import getpass
 from sys import exit
 import os
 from datetime import datetime, timedelta, timezone
+import asyncio
 import pytest
 
 if __name__ == "__main__":
